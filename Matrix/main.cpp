@@ -24,7 +24,10 @@
 
 #include <iostream>
 
+using namespace std;
+
 typedef Matrix<int> IntMatrix;
+typedef Matrix<double> FloatMatrix;
 
 int main
 (
@@ -36,8 +39,25 @@ int main
 	(void) argc;
 	(void) argv;
 
-	IntMatrix matrix(4, 3, 0);
-	IntMatrix transposedMatrix = transposedMatrix = matrix.transpose();
+	FloatMatrix invalidMatrix;
+
+	try
+	{
+		invalidMatrix.getValue(1, 0);
+	}
+	catch (std::exception e)
+	{
+		cout << e.what() << std::endl;
+	}
+
+	IntMatrix matrix(4, 3, 20000);
+
+	matrix.print(std::cout);
+
+	IntMatrix matrix2(3, 4, 2);
+
+	IntMatrix result = matrix * matrix2;
+	result.print(cout);
 
 	return 0;
 }
